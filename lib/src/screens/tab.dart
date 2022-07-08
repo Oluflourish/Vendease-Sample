@@ -99,7 +99,7 @@ class _TabScreenState extends State<TabScreen> {
                     Text(
                       title,
                       style: TextStyle(
-                        fontSize: 12.5.sp,
+                        fontSize: 10.5.sp,
                         color: currentTabIndex == position
                             ? AppColors.primaryColor
                             : AppColors.darkGrey,

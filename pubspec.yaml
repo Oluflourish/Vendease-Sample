@@ -77,26 +77,26 @@ flutter:
     
     - family: Gilroy
       fonts:
-        - asset: fonts/Gilroy/Gilroy-Regular.tff
-        - asset: fonts/Gilroy/Gilroy-Italic.tff
+        - asset: fonts/Gilroy/Gilroy-Regular.ttf
+        - asset: fonts/Gilroy/Gilroy-Italic.ttf
           style: italic
-        - asset: fonts/Gilroy/Gilroy-Thin.tff
+        - asset: fonts/Gilroy/Gilroy-Thin.ttf
           weight: 100
-        - asset: fonts/Gilroy/Gilroy-UltraLight.tff
+        - asset: fonts/Gilroy/Gilroy-UltraLight.ttf
           weight: 200
-        - asset: fonts/Gilroy/Gilroy-Light.tff
+        - asset: fonts/Gilroy/Gilroy-Light.ttf
           weight: 300
-        - asset: fonts/Gilroy/Gilroy-Regular.tff
+        - asset: fonts/Gilroy/Gilroy-Regular.ttf
           weight: 400
-        - asset: fonts/Gilroy/Gilroy-Medium.tff
+        - asset: fonts/Gilroy/Gilroy-Medium.ttf
           weight: 500
-        - asset: fonts/Gilroy/Gilroy-SemiBold.tff
+        - asset: fonts/Gilroy/Gilroy-SemiBold.ttf
           weight: 600
-        - asset: fonts/Gilroy/Gilroy-Bold.tff
+        - asset: fonts/Gilroy/Gilroy-Bold.ttf
           weight: 700
-        - asset: fonts/Gilroy/Gilroy-ExtraBold.tff
+        - asset: fonts/Gilroy/Gilroy-ExtraBold.ttf
           weight: 800
-        - asset: fonts/Gilroy/Gilroy-Black.tff
+        - asset: fonts/Gilroy/Gilroy-Black.ttf
           weight: 900
 
   

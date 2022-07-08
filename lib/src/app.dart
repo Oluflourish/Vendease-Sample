@@ -6,6 +6,7 @@ import 'package:vendease_test/src/blocs/provider.dart';
 import 'package:vendease_test/src/screens/cart.dart';
 import 'package:vendease_test/src/screens/tab.dart';
 import 'package:vendease_test/src/screens/splash.dart';
+import 'package:vendease_test/src/utils/app_fonts.dart';
 import 'package:vendease_test/src/utils/colors.dart';
 import 'package:vendease_test/src/utils/navigation.dart';
 
@@ -35,10 +36,7 @@ class App extends StatelessWidget {
                 builder: EasyLoading.init(),
                 onGenerateRoute: (RouteSettings settings) => routes(settings),
                 theme: ThemeData(
-                  //   fontFamily: GoogleFonts.manrope().fontFamily,
-                  //   textTheme: GoogleFonts.manropeTextTheme(
-                  //     Theme.of(context).textTheme,
-                  //   ),
+                  fontFamily: AppFonts.gilroy,
                   primaryColor: AppColors.primaryColor,
                   scaffoldBackgroundColor: AppColors.white,
                   textButtonTheme:

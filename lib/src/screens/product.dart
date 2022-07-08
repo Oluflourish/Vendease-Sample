@@ -24,6 +24,34 @@ class _ProductsScreenState extends State<ProductsScreen> {
               SizedBox(height: 14.0),
               Text('What are you looking for today?'),
               SizedBox(height: 24.0),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    'Show:',
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0),
+                  ),
+                  SizedBox(width: 8.0),
+                  Text(
+                    'This week',
+                    style: TextStyle(
+                        color: AppColors.primaryColor, fontSize: 12.0),
+                  ),
+                  SizedBox(width: 2.0),
+                  Transform.translate(
+                      offset: Offset(0, 4), child: Icon(Icons.arrow_drop_down)),
+                  SizedBox(width: 8.0),
+                  Spacer(),
+                  Text(
+                    'View more',
+                    style: TextStyle(
+                        color: AppColors.primaryColor, fontSize: 12.0),
+                  ),
+                ],
+              ),
+              SizedBox(height: 24.0),
               Container(
                 width: double.maxFinite,
                 padding: EdgeInsets.symmetric(vertical: 36),
@@ -100,7 +128,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
               ),
               SizedBox(height: 16.0),
               Container(
-                height: 190,
+                height: 120,
                 child: ListView.builder(
                     itemCount: 4,
                     itemBuilder: (context, index) {

@@ -8,6 +8,7 @@ import 'package:vendease_test/src/utils/navigation.dart';
 import 'package:vendease_test/src/utils/helpers.dart';
 import 'package:vendease_test/src/utils/svg_icons.dart';
 import 'package:vendease_test/src/wigdets/custom_text_form_field.dart';
+import 'package:vendease_test/src/wigdets/naira.dart';
 import 'package:vendease_test/src/wigdets/network_image.dart';
 
 class ProductsScreen extends StatefulWidget {
@@ -337,8 +338,8 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                   }).toList();
                                 },
                               ),
-                              Text(
-                                '₦${'${currencyFormatter(productModel.vendeasePrice, hasDecimal: true)}'}',
+                              Naira(
+                                productModel.vendeasePrice!,
                                 style: TextStyle(
                                   color: AppColors.darkText,
                                   fontSize: 14.0,
@@ -478,8 +479,8 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                       fontSize: 13.0,
                                     ),
                                   ),
-                                  Text(
-                                    '₦${'${currencyFormatter(productModel.vendeasePrice, hasDecimal: true)}'}',
+                                  Naira(
+                                    productModel.vendeasePrice!,
                                     style: TextStyle(
                                       color: AppColors.darkText,
                                       fontSize: 14.0,

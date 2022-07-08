@@ -6,6 +6,7 @@ import 'package:vendease_test/src/utils/app_images.dart';
 import 'package:vendease_test/src/utils/colors.dart';
 import 'package:vendease_test/src/utils/navigation.dart';
 import 'package:vendease_test/src/utils/svg_icons.dart';
+import 'package:vendease_test/src/wigdets/naira.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -333,12 +334,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text(
-                                                  '₦ 8,000',
-                                                  style: TextStyle(
-                                                      fontSize: 13.0,
-                                                      color: AppColors.black
-                                                          .withOpacity(0.4)),
+                                                Row(
+                                                  children: [
+                                                    Naira(
+                                                      8000,
+                                                      style: TextStyle(
+                                                          fontFamily: '',
+                                                          fontSize: 13.0,
+                                                          color: AppColors.black
+                                                              .withOpacity(
+                                                                  0.4)),
+                                                    ),
+                                                  ],
                                                 ),
                                                 SizedBox(height: 14.0),
                                                 Text(

@@ -7,6 +7,7 @@ import 'package:vendease_test/src/utils/navigation.dart';
 import 'package:vendease_test/src/utils/svg_icons.dart';
 import 'package:vendease_test/src/wigdets/custom_button.dart';
 import 'package:vendease_test/src/wigdets/custom_text_form_field.dart';
+import 'package:vendease_test/src/wigdets/naira.dart';
 import 'package:vendease_test/src/wigdets/toast_text.dart';
 
 class CartScreen extends StatefulWidget {
@@ -148,15 +149,9 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                     ),
                     Spacer(),
-                    Text(
-                      '₦ ',
-                      style: TextStyle(
-                        color: AppColors.primaryColor,
-                        fontSize: 16.0,
-                      ),
-                    ),
-                    Text(
-                      '51,100',
+                    Naira(
+                      51100,
+                      nairaStyle: TextStyle(fontWeight: FontWeight.normal),
                       style: TextStyle(
                         color: AppColors.primaryColor,
                         fontWeight: FontWeight.bold,
@@ -252,8 +247,8 @@ class _CartItemState extends State<CartItem> {
                   ),
                 ),
                 SizedBox(height: 10.0),
-                Text(
-                  '₦ 1,100',
+                Naira(
+                  1100,
                   style: TextStyle(
                     color: AppColors.greyText,
                     fontSize: 16.0,

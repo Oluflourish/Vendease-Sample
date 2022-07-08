@@ -34,6 +34,8 @@ class App extends StatelessWidget {
                 onGenerateRoute: (RouteSettings settings) => routes(settings),
                 theme: ThemeData(
                   fontFamily: AppFonts.gilroy,
+                  textTheme:
+                      Theme.of(context).textTheme.apply(fontSizeFactor: 1.sp),
                   primaryColor: AppColors.primaryColor,
                   scaffoldBackgroundColor: AppColors.white,
                   textButtonTheme:

@@ -70,7 +70,6 @@ class _ProductsScreenState extends State<ProductsScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(height: 16.0),
                           Expanded(
                             child: TabBarView(
                               children: [
@@ -96,6 +95,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
   Container _tabList() {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.0),
+      padding: EdgeInsets.symmetric(vertical: 8.0),
       child: ListView.builder(
           itemCount: 5,
           shrinkWrap: true,
@@ -110,13 +110,13 @@ class _ProductsScreenState extends State<ProductsScreen> {
               child: Row(
                 children: [
                   Image(
-                    height: 48.0,
-                    width: 48.0,
+                    height: 54.0,
+                    // width: 48.0,
                     image: AssetImage(index % 2 == 0
                         ? AppImages.product1
                         : AppImages.product2),
                   ),
-                  SizedBox(width: 16.0),
+                  SizedBox(width: 14.0),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,10 +134,11 @@ class _ProductsScreenState extends State<ProductsScreen> {
                                 maxLines: 1,
                               ),
                             ),
+                            SizedBox(width: 8.0),
                             SvgPicture.asset(SvgIcons.addCart),
                           ],
                         ),
-                        SizedBox(height: 14.0),
+                        SizedBox(height: 10.0),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -164,7 +165,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                           thickness: 1,
                           color: AppColors.dividerColor,
                         ),
-                        SizedBox(height: 4.0),
+                        SizedBox(height: 2.0),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -172,7 +173,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                               index % 2 == 0 ? 'Kilogram' : 'Each',
                               style: TextStyle(
                                 color: AppColors.darkText,
-                                fontSize: 14.0,
+                                fontSize: 13.0,
                               ),
                             ),
                             Text(

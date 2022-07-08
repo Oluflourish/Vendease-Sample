@@ -50,4 +50,53 @@ flutter:
     - assets/images/
     - assets/svgs/
 
+  fonts:
+    - family: Lato
+      fonts:
+        - asset: fonts/Lato/Lato-Regular.ttf
+        - asset: fonts/Lato/Lato-Italic.ttf
+          style: italic
+        - asset: fonts/Lato/Lato-Thin.ttf
+          weight: 100
+        # - asset: fonts/Lato/Lato-ExtraLight.ttf
+        #   weight: 200
+        - asset: fonts/Lato/Lato-Light.ttf
+          weight: 300
+        - asset: fonts/Lato/Lato-Regular.ttf
+          weight: 400
+        # - asset: fonts/Lato/Lato-Medium.ttf
+        #   weight: 500
+        # - asset: fonts/Lato/Lato-SemiBold.ttf
+        #   weight: 600
+        - asset: fonts/Lato/Lato-Bold.ttf
+          weight: 700
+        # - asset: fonts/Lato/Lato-ExtraBold.ttf
+        #   weight: 800
+        - asset: fonts/Lato/Lato-Black.ttf
+          weight: 900
+    
+    - family: Gilroy
+      fonts:
+        - asset: fonts/Gilroy/Gilroy-Regular.tff
+        - asset: fonts/Gilroy/Gilroy-Italic.tff
+          style: italic
+        - asset: fonts/Gilroy/Gilroy-Thin.tff
+          weight: 100
+        - asset: fonts/Gilroy/Gilroy-UltraLight.tff
+          weight: 200
+        - asset: fonts/Gilroy/Gilroy-Light.tff
+          weight: 300
+        - asset: fonts/Gilroy/Gilroy-Regular.tff
+          weight: 400
+        - asset: fonts/Gilroy/Gilroy-Medium.tff
+          weight: 500
+        - asset: fonts/Gilroy/Gilroy-SemiBold.tff
+          weight: 600
+        - asset: fonts/Gilroy/Gilroy-Bold.tff
+          weight: 700
+        - asset: fonts/Gilroy/Gilroy-ExtraBold.tff
+          weight: 800
+        - asset: fonts/Gilroy/Gilroy-Black.tff
+          weight: 900
+
   

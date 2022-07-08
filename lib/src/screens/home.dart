@@ -1,34 +1,113 @@
-import 'package:flutter/material.dart';
-import 'package:vendease_test/src/utils/colors.dart';
+import 'dart:io';
 
-class HomeScreen extends StatefulWidget {
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:vendease_test/src/blocs/app_nav_bloc.dart';
+import 'package:vendease_test/src/blocs/provider.dart';
+import 'package:vendease_test/src/utils/colors.dart';
+import 'package:vendease_test/src/utils/svg_icons.dart';
+
+class BottomNavScreen extends StatefulWidget {
+  const BottomNavScreen({Key? key}) : super(key: key);
+
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  _BottomNavScreenState createState() => _BottomNavScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  initialize(BuildContext context) async {
-    WidgetsFlutterBinding.ensureInitialized();
-  }
+class _BottomNavScreenState extends State<BottomNavScreen> {
+  final PageStorageBucket bucket = PageStorageBucket();
 
-  @override
-  void initState() {
-    super.initState();
-    initialize(context);
-  }
+  final List<Widget> _pages = [
+    Container(child: Center(child: Text('Home'))),
+    Container(child: Center(child: Text('Orders'))),
+    Container(child: Center(child: Text('Products'))),
+    Container(child: Center(child: Text('Invoice'))),
+    Container(child: Center(child: Text('Delivery'))),
+  ];
+
+  int currentTabIndex = 0; // Defaults to dashboard tab
+
+  AppNavBloc? appNavBloc;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.white,
-      body: Container(
-        height: MediaQuery.of(context).size.height * 0.94,
-        child: Stack(
-          children: [
-            Center(child: Text('Home Screen')),
-          ],
+    appNavBloc = BlocProvider.appNav(context);
+
+    return WillPopScope(
+      onWillPop: () => Future.value(false),
+      child: Scaffold(
+        body: StreamBuilder<int>(
+            stream: appNavBloc!.tabIndex,
+            builder: (context, snapshot) {
+              currentTabIndex = int.tryParse(snapshot.data.toString()) ?? 0;
+
+              return PageStorage(
+                bucket: bucket,
+                child: _pages[currentTabIndex],
+              );
+            }),
+        bottomNavigationBar: BottomAppBar(
+          child: Container(
+            height: Platform.isIOS ? 65.0 : 76.0,
+            padding: EdgeInsets.symmetric(horizontal: 4.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                buildMaterialButton("Home", SvgIcons.home, 0),
+                buildMaterialButton("Orders", SvgIcons.orders, 1),
+                buildMaterialButton("Products", SvgIcons.products, 2),
+                buildMaterialButton("Invoice", SvgIcons.invoice, 3),
+                buildMaterialButton("Delivery", SvgIcons.delivery, 4),
+              ],
+            ),
+          ),
         ),
       ),
     );
+  }
+
+  buildMaterialButton(String title, String image, int position) {
+    return StreamBuilder<int>(
+        stream: appNavBloc!.tabIndex,
+        builder: (context, snapshot) {
+          currentTabIndex = int.tryParse(snapshot.data.toString()) ?? 0;
+          return Expanded(
+            child: Container(
+              // color: AppColors.lightRed,
+              child: InkWell(
+                splashColor: AppColors.transparent,
+                highlightColor: AppColors.transparent,
+                onTap: () => appNavBloc!.setTabIndex(position),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    SizedBox(height: 10.0),
+                    SvgPicture.asset(
+                      image,
+                      width: 24.0,
+                      height: 24.0,
+                      color: currentTabIndex == position
+                          ? AppColors.primaryColor
+                          : AppColors.greyColor,
+                    ),
+                    SizedBox(height: 8.0),
+                    Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 12.5.sp,
+                        color: currentTabIndex == position
+                            ? AppColors.primaryColor
+                            : AppColors.greyColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
   }
 }

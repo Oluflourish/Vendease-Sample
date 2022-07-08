@@ -6,12 +6,14 @@ import 'package:vendease_test/src/resources/repository.dart';
 class ProductBloc {
   final _repository = Repository();
   final _products = BehaviorSubject<List<ProductModel>?>();
+  final _productsFiltered = BehaviorSubject<List<ProductModel>?>();
   final _productsDictionary =
       BehaviorSubject<Map<String, List<ProductModel>>?>();
   final _errorResponse = PublishSubject<ErrorResponseModel>();
 
   // Streams Getter Variables
   Stream<List<ProductModel>?> get products => _products.stream;
+  Stream<List<ProductModel>?> get productsFiltered => _productsFiltered.stream;
   Stream<Map<String, List<ProductModel>>?> get productsDictionary =>
       _productsDictionary.stream;
 
@@ -52,9 +54,20 @@ class ProductBloc {
     }
   }
 
+  searchProducts(String query) {
+    List<ProductModel>? filteredList = _products.value!.where((product) {
+      String searchFields =
+          '${product.name} ${product.categoryDetails!.name} ${product.categoryDetails!.subCategory}'
+              .toLowerCase();
+      return searchFields.contains(query.toLowerCase());
+    }).toList();
+    _productsFiltered.sink.add(filteredList);
+  }
+
   dispose() {
     _errorResponse.close();
     _products.close();
+    _productsDictionary.close();
   }
 
   bool isApiCallSuccess(HTTPResponseModel data) {

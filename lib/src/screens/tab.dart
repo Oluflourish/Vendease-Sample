@@ -5,28 +5,29 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:vendease_test/src/blocs/app_nav_bloc.dart';
 import 'package:vendease_test/src/blocs/provider.dart';
+import 'package:vendease_test/src/screens/product.dart';
 import 'package:vendease_test/src/utils/colors.dart';
 import 'package:vendease_test/src/utils/svg_icons.dart';
 
-class BottomNavScreen extends StatefulWidget {
-  const BottomNavScreen({Key? key}) : super(key: key);
+class TabScreen extends StatefulWidget {
+  const TabScreen({Key? key}) : super(key: key);
 
   @override
-  _BottomNavScreenState createState() => _BottomNavScreenState();
+  _TabScreenState createState() => _TabScreenState();
 }
 
-class _BottomNavScreenState extends State<BottomNavScreen> {
+class _TabScreenState extends State<TabScreen> {
   final PageStorageBucket bucket = PageStorageBucket();
 
   final List<Widget> _pages = [
     Container(child: Center(child: Text('Home'))),
     Container(child: Center(child: Text('Orders'))),
-    Container(child: Center(child: Text('Products'))),
+    ProductsScreen(),
     Container(child: Center(child: Text('Invoice'))),
     Container(child: Center(child: Text('Delivery'))),
   ];
 
-  int currentTabIndex = 0; // Defaults to dashboard tab
+  int currentTabIndex = 2; // Defaults to products tab
 
   AppNavBloc? appNavBloc;
 
@@ -91,7 +92,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
                       height: 24.0,
                       color: currentTabIndex == position
                           ? AppColors.primaryColor
-                          : AppColors.greyColor,
+                          : AppColors.darkGrey,
                     ),
                     SizedBox(height: 8.0),
                     Text(
@@ -100,7 +101,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
                         fontSize: 12.5.sp,
                         color: currentTabIndex == position
                             ? AppColors.primaryColor
-                            : AppColors.greyColor,
+                            : AppColors.darkGrey,
                       ),
                     ),
                   ],

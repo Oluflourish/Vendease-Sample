@@ -1,2 +1,2 @@
 const SplashNav = "/";
-const HomeNav = "home";
+const TabNav = "tab-bar";

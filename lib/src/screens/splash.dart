@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     // Delay for 1 second to allow for visiblity of the splash screen logo
     Timer(Duration(seconds: 1), () async {
-      Navigator.pushReplacementNamed(context, HomeNav);
+      Navigator.pushReplacementNamed(context, TabNav);
     });
   }
 

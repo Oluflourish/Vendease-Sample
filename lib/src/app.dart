@@ -3,7 +3,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:vendease_test/src/blocs/provider.dart';
-import 'package:vendease_test/src/screens/home.dart';
+import 'package:vendease_test/src/screens/tab.dart';
 import 'package:vendease_test/src/screens/splash.dart';
 import 'package:vendease_test/src/utils/colors.dart';
 import 'package:vendease_test/src/utils/navigation.dart';
@@ -92,8 +92,8 @@ Route routes(RouteSettings settings) {
         case SplashNav:
           return SplashScreen();
 
-        case HomeNav:
-          return BottomNavScreen();
+        case TabNav:
+          return TabScreen();
 
         default:
           return SplashScreen();

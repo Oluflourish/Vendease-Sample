@@ -1,7 +1,7 @@
 import 'package:rxdart/rxdart.dart';
 
 class AppNavBloc {
-  final _tabIndex = BehaviorSubject<int>.seeded(0);
+  final _tabIndex = BehaviorSubject<int>.seeded(2); // Defaults to products tab
 
   Stream<int> get tabIndex => _tabIndex.stream;
 

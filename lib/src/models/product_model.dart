@@ -1,9 +1,9 @@
 class ProductModel {
   String? sId;
   String? image;
-  int? vendorPrice;
-  int? vendeasePrice;
-  int? marketPrice;
+  num? vendorPrice;
+  num? vendeasePrice;
+  num? marketPrice;
   bool? discountDeleted;
   bool? deleted;
   String? name;
@@ -134,7 +134,7 @@ class CategoryDetails {
 
 class Discount {
   String? discountType;
-  int? discountValue;
+  num? discountValue;
   String? sId;
 
   Discount({this.discountType, this.discountValue, this.sId});

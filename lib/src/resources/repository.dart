@@ -7,13 +7,13 @@ class Repository {
   final int _api = 0;
   List<Source> sources = <Source>[ApiProvider()];
 
-  Future<HTTPResponseModel> products() async {
-    return await sources[_api].products();
+  Future<HTTPResponseModel> getProducts() async {
+    return await sources[_api].getProducts();
   }
 }
 
 abstract class Source {
-  Future<HTTPResponseModel> products();
+  Future<HTTPResponseModel> getProducts();
 }
 
 isApiCallSuccess(HTTPResponseModel data) {

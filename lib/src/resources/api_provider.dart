@@ -10,37 +10,18 @@ enum RequestType { POST, GET }
 const int httpTimeoutDuration = 45;
 
 class ApiProvider implements Source {
-  String? _root = "";
+  String? _baseUrl = 'https://live-vendease.herokuapp.com/';
 
   Map<String, String> getHeader({String? token}) {
     return {
       HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptHeader: 'application/json',
-      HttpHeaders.authorizationHeader: token != null ? 'Bearer $token' : '',
     };
-  }
-
-  ApiProvider() {
-    _root = 'https://live-vendease.herokuapp.com/';
   }
 
   // get product endpoint
   final String _product =
       "product?\$limit=50&&name[\$search]=co&\$skip=0&cityCode=LA724629&countryCode=NI904222";
-
-  Map<dynamic, dynamic> exceptionHandler(
-      Object exception, StackTrace stacktrace) {
-    // switch (exception.runtimeType) {
-    //   case TimeoutException:
-    //     return AppConstants.timeOutJson;
-    //   case SocketException:
-    //     return AppConstants.socketIOJson;
-    //   default:
-    //     return AppConstants.unknownExceptionJson;
-    // }
-
-    return {};
-  }
 
   Future<HTTPResponseModel> httpBaseRequest({
     Map? body,
@@ -57,34 +38,31 @@ class ApiProvider implements Source {
       switch (requestType) {
         case RequestType.POST:
           response = await client
-              .post(Uri.parse('$_root$url'),
+              .post(Uri.parse('$_baseUrl$url'),
                   headers: headers, body: json.encode(body))
               .timeout(Duration(seconds: timeout));
 
           break;
         case RequestType.GET:
           response = await client
-              .get(Uri.parse('$_root$url'), headers: headers)
+              .get(Uri.parse('$_baseUrl$url'), headers: headers)
               .timeout(Duration(seconds: timeout));
           break;
         default:
           response = await client
-              .get(Uri.parse('$_root$url'), headers: headers)
+              .get(Uri.parse('$_baseUrl$url'), headers: headers)
               .timeout(Duration(seconds: timeout));
       }
 
       result = json.decode(response.body);
-    } catch (exception, stackTrace) {
-      result =
-          json.decode(json.encode(exceptionHandler(exception, stackTrace)));
     } finally {
       client.close();
     }
 
-    return HTTPResponseModel.jsonToMap(result);
+    return HTTPResponseModel.jsonToMap(response.statusCode, result);
   }
 
-  Future<HTTPResponseModel> products() async {
+  Future<HTTPResponseModel> getProducts() async {
     return await httpBaseRequest(
       url: _product,
       requestType: RequestType.GET,

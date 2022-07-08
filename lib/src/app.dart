@@ -89,6 +89,7 @@ Route routes(RouteSettings settings) {
           return SplashScreen();
 
         case TabNav:
+          BlocProvider.product(context).getProducts();
           return TabScreen();
 
         case CartNav:

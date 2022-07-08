@@ -25,6 +25,7 @@ class AppColors {
   static const Color darkGrey = Color(0xFF8091B3);
   static const Color dividerColor = Color(0xFFDCE5F4);
   static const Color borderColor = Color(0xFFF0F5FF);
+  static const Color darkBorderColor = Color(0xFFA3B2CC);
 
   static const Color transparent = Color(0x00000000);
   static const Color transparentBlack = Color(0x99000000);

@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:vendease_test/src/utils/app_images.dart';
 import 'package:vendease_test/src/utils/colors.dart';
+import 'package:vendease_test/src/utils/navigation.dart';
 import 'package:vendease_test/src/utils/svg_icons.dart';
+import 'package:vendease_test/src/wigdets/custom_button.dart';
+import 'package:vendease_test/src/wigdets/custom_text_form_field.dart';
+import 'package:vendease_test/src/wigdets/toast_text.dart';
 
 class CartScreen extends StatefulWidget {
   @override
@@ -12,6 +17,9 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
+    // Remove Keyboard view
+    FocusScope.of(context).unfocus();
+
     return Scaffold(
       backgroundColor: AppColors.backgroundColor2.withOpacity(0.1),
       body: SafeArea(
@@ -33,107 +41,257 @@ class _CartScreenState extends State<CartScreen> {
                     style: TextStyle(
                       color: AppColors.blackText.withOpacity(0.9),
                       fontSize: 22.0,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                   Spacer(),
                   Text(
                     '3 items',
                     style: TextStyle(
-                        color: AppColors.primaryColor, fontSize: 20.0),
+                      color: AppColors.primaryColor,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 16.0),
-            SizedBox(height: 20.0),
             Container(
-              // padding: EdgeInsets.all(16.0),
-              child: ListView.builder(
-                  itemCount: 3,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    var titles = ['Watermelon', 'Pineapples', 'Catfish'];
-
-                    var images = [
-                      AppImages.watermelon,
-                      AppImages.pineapple,
-                      AppImages.catfish
-                    ];
-                    return Container(
-                      width: 130,
-                      padding: EdgeInsets.symmetric(
-                          vertical: 18.0, horizontal: 16.0),
-                      margin: EdgeInsets.symmetric(vertical: 5.0),
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
+              padding: EdgeInsets.only(left: 8.0, right: 16.0),
+              margin: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.circular(6.0),
+                border:
+                    Border.all(color: AppColors.darkBorderColor, width: 1.0),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: AbsorbPointer(
+                      child: CustomTextFormField(
+                        autofocus: false,
+                        margin: EdgeInsets.zero,
+                        textInputAction: TextInputAction.done,
+                        borderColor: AppColors.white,
+                        filled: false,
+                        enabledBorderColor: AppColors.white,
+                        focusedBorderColor: AppColors.white,
+                        contentPaddingVertical: 0,
+                        textFormFieldStyle: TextStyle(fontSize: 16.0),
+                        hintText: 'Search Products',
+                        // enabled: false,
+                        // controller:searchFieldController,
                       ),
-                      child: Row(
-                        children: [
-                          Image(
-                            height: 70.0,
-                            width: 85.0,
-                            image: AssetImage(images[index]),
-                          ),
-                          SizedBox(width: 36.0),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  titles[index],
-                                  style: TextStyle(
-                                      color:
-                                          AppColors.blackText.withOpacity(0.8),
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                SizedBox(height: 8.0),
-                                Text(
-                                  '1 crate',
-                                  style: TextStyle(
-                                    color: AppColors.black.withOpacity(0.5),
-                                    fontSize: 16.0,
-                                  ),
-                                ),
-                                SizedBox(height: 8.0),
-                                Text(
-                                  '₦ 1,100',
-                                  style: TextStyle(
-                                    color: AppColors.greyText,
-                                    fontSize: 16.0,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(width: 36.0),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SvgPicture.asset(SvgIcons.delete),
-                              SizedBox(height: 36.0),
-                              Row(
-                                children: [
-                                  SvgPicture.asset(SvgIcons.subtract),
-                                  SizedBox(width: 14.0),
-                                  Text('6',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold)),
-                                  SizedBox(width: 14.0),
-                                  SvgPicture.asset(SvgIcons.add),
-                                ],
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    );
-                  }),
+                    ),
+                  ),
+                  SvgPicture.asset(SvgIcons.search2),
+                  SizedBox(width: 6.0),
+                ],
+              ),
             ),
+            SizedBox(height: 8.0),
+            ListView.builder(
+                itemCount: 3,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  var titles = ['Watermelon', 'Pineapples', 'Catfish'];
+
+                  var images = [
+                    AppImages.watermelon,
+                    AppImages.pineapple,
+                    AppImages.catfish
+                  ];
+                  return CartItem(image: images[index], title: titles[index]);
+                }),
+            SizedBox(height: 16.0),
             SizedBox(height: 38.0),
           ],
         ),
+      ),
+      bottomSheet: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            color: AppColors.white,
+            padding: EdgeInsets.symmetric(vertical: 24.0, horizontal: 16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  '+ Add Products ',
+                  style: TextStyle(
+                    color: AppColors.primaryColor,
+                    fontSize: 18.0,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 4.0),
+          Container(
+            color: AppColors.white,
+            padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 24.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      'TOTAL',
+                      style: TextStyle(
+                        color: AppColors.darkGrey,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Spacer(),
+                    Text(
+                      '₦ ',
+                      style: TextStyle(
+                        color: AppColors.primaryColor,
+                        fontSize: 16.0,
+                      ),
+                    ),
+                    Text(
+                      '51,100',
+                      style: TextStyle(
+                        color: AppColors.primaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18.0,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 24.0),
+                Text(
+                  'Delivery fee not included yet',
+                  style: TextStyle(
+                    color: AppColors.darkText,
+                    fontSize: 14.0,
+                  ),
+                ),
+                SizedBox(height: 16.0),
+                CustomButton(
+                  title: 'Check out',
+                  onTap: () => Navigator.pushReplacementNamed(context, TabNav),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CartItem extends StatefulWidget {
+  const CartItem({
+    Key? key,
+    required this.image,
+    required this.title,
+  }) : super(key: key);
+
+  final String image;
+  final String title;
+
+  @override
+  State<CartItem> createState() => _CartItemState();
+}
+
+class _CartItemState extends State<CartItem> {
+  int counter = 1;
+
+  incrementCount() {
+    setState(() => counter += 1);
+  }
+
+  decrementCount() {
+    if (counter == 1)
+      return showToastWidget(ToastText(text: 'Item cannot be less than 1'));
+
+    setState(() => counter -= 1);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 130,
+      padding: EdgeInsets.symmetric(vertical: 18.0, horizontal: 16.0),
+      margin: EdgeInsets.symmetric(vertical: 5.0),
+      decoration: BoxDecoration(
+        color: AppColors.white,
+      ),
+      child: Row(
+        children: [
+          Image(
+            height: 70.0,
+            width: 85.0,
+            image: AssetImage(widget.image),
+          ),
+          SizedBox(width: 36.0),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.title,
+                  style: TextStyle(
+                      color: AppColors.blackText.withOpacity(0.8),
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w500),
+                ),
+                SizedBox(height: 8.0),
+                Text(
+                  '1 crate',
+                  style: TextStyle(
+                    color: AppColors.black.withOpacity(0.5),
+                    fontSize: 16.0,
+                  ),
+                ),
+                SizedBox(height: 10.0),
+                Text(
+                  '₦ 1,100',
+                  style: TextStyle(
+                    color: AppColors.greyText,
+                    fontSize: 16.0,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SvgPicture.asset(SvgIcons.delete),
+              SizedBox(height: 36.0),
+              Row(
+                children: [
+                  InkWell(
+                      onTap: decrementCount,
+                      child: SvgPicture.asset(SvgIcons.subtract)),
+                  SizedBox(width: 8.0),
+                  Container(
+                    width: 28.0,
+                    child: Center(
+                      child: Text('${counter}',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 15.0)),
+                    ),
+                  ),
+                  SizedBox(width: 8.0),
+                  InkWell(
+                      onTap: incrementCount,
+                      child: SvgPicture.asset(SvgIcons.add)),
+                ],
+              ),
+            ],
+          ),
+          SizedBox(width: 4.0),
+        ],
       ),
     );
   }

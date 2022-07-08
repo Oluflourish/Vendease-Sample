@@ -5,7 +5,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:vendease_test/src/blocs/app_nav_bloc.dart';
 import 'package:vendease_test/src/blocs/provider.dart';
+import 'package:vendease_test/src/screens/delivery.dart';
 import 'package:vendease_test/src/screens/home.dart';
+import 'package:vendease_test/src/screens/invoice.dart';
+import 'package:vendease_test/src/screens/orders.dart';
 import 'package:vendease_test/src/screens/product.dart';
 import 'package:vendease_test/src/utils/colors.dart';
 import 'package:vendease_test/src/utils/svg_icons.dart';
@@ -22,10 +25,10 @@ class _TabScreenState extends State<TabScreen> {
 
   final List<Widget> _pages = [
     HomeScreen(),
-    Container(child: Center(child: Text('Orders'))),
+    OrdersScreen(),
     ProductsScreen(),
-    Container(child: Center(child: Text('Invoice'))),
-    Container(child: Center(child: Text('Delivery'))),
+    InvoiceScreen(),
+    DeliveryScreen(),
   ];
 
   int currentTabIndex = 0; // Defaults to home tab

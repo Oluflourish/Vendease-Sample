@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:vendease_test/src/utils/app_images.dart';
 import 'package:vendease_test/src/utils/colors.dart';
+import 'package:vendease_test/src/utils/navigation.dart';
 import 'package:vendease_test/src/utils/svg_icons.dart';
+import 'package:vendease_test/src/wigdets/custom_text_form_field.dart';
 
 class ProductsScreen extends StatefulWidget {
   @override
@@ -12,6 +14,9 @@ class ProductsScreen extends StatefulWidget {
 class _ProductsScreenState extends State<ProductsScreen> {
   @override
   Widget build(BuildContext context) {
+    // Remove Keyboard view
+    FocusScope.of(context).unfocus();
+
     return Scaffold(
       backgroundColor: AppColors.backgroundColor2.withOpacity(0.1),
       body: SafeArea(
@@ -33,7 +38,39 @@ class _ProductsScreenState extends State<ProductsScreen> {
               thickness: 1,
               color: AppColors.dividerColor,
             ),
-            SizedBox(height: 16.0),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              margin: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.circular(6.0),
+                border:
+                    Border.all(color: AppColors.darkBorderColor, width: 1.0),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SvgPicture.asset(SvgIcons.search),
+                  SizedBox(width: 6.0),
+                  Expanded(
+                    child: CustomTextFormField(
+                      autofocus: false,
+                      margin: EdgeInsets.zero,
+                      textInputAction: TextInputAction.done,
+                      borderColor: AppColors.white,
+                      filled: false,
+                      enabledBorderColor: AppColors.white,
+                      focusedBorderColor: AppColors.white,
+                      contentPaddingVertical: 0,
+                      textFormFieldStyle: TextStyle(fontSize: 14.0),
+                      hintText: 'Search Products',
+                      // controller:searchFieldController,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 8.0),
             Expanded(
               child: DefaultTabController(
                 length: 3,
@@ -61,9 +98,9 @@ class _ProductsScreenState extends State<ProductsScreen> {
                           ),
                           isScrollable: true,
                           tabs: [
-                            Tab(child: Text("All Products")),
-                            Tab(child: Text("Fruits and Vegetables")),
-                            Tab(child: Text("Toiletries")),
+                            Tab(text: "All Products"),
+                            Tab(text: "Fruits and Vegetables"),
+                            Tab(text: "Toiletries"),
                           ]),
                     ),
                     Expanded(
@@ -104,9 +141,18 @@ class _ProductsScreenState extends State<ProductsScreen> {
               padding: EdgeInsets.symmetric(vertical: 18.0, horizontal: 16.0),
               margin: EdgeInsets.symmetric(vertical: 6.0),
               decoration: BoxDecoration(
-                  color: AppColors.white,
-                  border: Border.all(color: AppColors.borderColor),
-                  borderRadius: BorderRadius.circular(7.0)),
+                color: AppColors.white,
+                border: Border.all(color: AppColors.borderColor),
+                borderRadius: BorderRadius.circular(7.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.black.withOpacity(0.03),
+                    spreadRadius: 0.2,
+                    blurRadius: 1,
+                    offset: Offset(0, 1),
+                  ),
+                ],
+              ),
               child: Row(
                 children: [
                   Image(
@@ -135,7 +181,10 @@ class _ProductsScreenState extends State<ProductsScreen> {
                               ),
                             ),
                             SizedBox(width: 8.0),
-                            SvgPicture.asset(SvgIcons.addCart),
+                            InkWell(
+                                onTap: () =>
+                                    Navigator.pushNamed(context, CartNav),
+                                child: SvgPicture.asset(SvgIcons.addCart)),
                           ],
                         ),
                         SizedBox(height: 10.0),
@@ -173,6 +222,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                               index % 2 == 0 ? 'Kilogram' : 'Each',
                               style: TextStyle(
                                 color: AppColors.darkText,
+                                fontWeight: FontWeight.bold,
                                 fontSize: 13.0,
                               ),
                             ),

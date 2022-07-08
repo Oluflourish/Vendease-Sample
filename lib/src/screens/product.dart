@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:vendease_test/src/utils/app_images.dart';
 import 'package:vendease_test/src/utils/colors.dart';
+import 'package:vendease_test/src/utils/svg_icons.dart';
 
 class ProductsScreen extends StatefulWidget {
   @override
@@ -10,200 +13,185 @@ class _ProductsScreenState extends State<ProductsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: AppColors.backgroundColor2.withOpacity(0.1),
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Welcome, Mhiday',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
-              ),
-              SizedBox(height: 14.0),
-              Text('What are you looking for today?'),
-              SizedBox(height: 24.0),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    'Show:',
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 12.0),
-                  ),
-                  SizedBox(width: 8.0),
-                  Text(
-                    'This week',
-                    style: TextStyle(
-                        color: AppColors.primaryColor, fontSize: 12.0),
-                  ),
-                  SizedBox(width: 2.0),
-                  Transform.translate(
-                      offset: Offset(0, 4), child: Icon(Icons.arrow_drop_down)),
-                  SizedBox(width: 8.0),
-                  Spacer(),
-                  Text(
-                    'View more',
-                    style: TextStyle(
-                        color: AppColors.primaryColor, fontSize: 12.0),
-                  ),
-                ],
-              ),
-              SizedBox(height: 24.0),
-              Container(
-                width: double.maxFinite,
-                padding: EdgeInsets.symmetric(vertical: 36),
-                decoration: BoxDecoration(
-                  color: AppColors.lightOrange,
-                  borderRadius: BorderRadius.circular(6.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                'Products',
+                style: TextStyle(
+                  color: AppColors.blackText.withOpacity(0.9),
+                  fontSize: 22.0,
+                  fontWeight: FontWeight.bold,
                 ),
+              ),
+            ),
+            Divider(
+              thickness: 1,
+              color: AppColors.dividerColor,
+            ),
+            SizedBox(height: 16.0),
+            Expanded(
+              child: DefaultTabController(
+                length: 3,
                 child: Column(
                   children: [
-                    Text(
-                      'Total Orders',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 18.0),
+                    Container(
+                      height: 26,
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                              width: 0.5, color: AppColors.dividerColor),
+                        ),
+                      ),
+                      child: TabBar(
+                          // labelPadding: EdgeInsets.zero,
+                          indicatorPadding: EdgeInsets.zero,
+                          unselectedLabelColor: AppColors.grey,
+                          indicatorSize: TabBarIndicatorSize.tab,
+                          labelColor: AppColors.primaryColor,
+                          indicatorWeight: 1.5,
+                          indicatorColor: AppColors.primaryColor,
+                          labelStyle: TextStyle(
+                            fontSize: 14.0,
+                            letterSpacing: .4,
+                          ),
+                          isScrollable: true,
+                          tabs: [
+                            Tab(child: Text("All Products")),
+                            Tab(child: Text("Fruits and Vegetables")),
+                            Tab(child: Text("Toiletries")),
+                          ]),
                     ),
-                    SizedBox(height: 21.0),
-                    Text(
-                      '200',
-                      style: TextStyle(
-                          color: AppColors.orangeText,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18.0),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 16.0),
+                          Expanded(
+                            child: TabBarView(
+                              children: [
+                                _tabList(),
+                                _tabList(),
+                                _tabList(),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 28.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Container _tabList() {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 16.0),
+      child: ListView.builder(
+          itemCount: 5,
+          shrinkWrap: true,
+          itemBuilder: (context, index) {
+            return Container(
+              padding: EdgeInsets.symmetric(vertical: 18.0, horizontal: 16.0),
+              margin: EdgeInsets.symmetric(vertical: 6.0),
+              decoration: BoxDecoration(
+                  color: AppColors.white,
+                  border: Border.all(color: AppColors.borderColor),
+                  borderRadius: BorderRadius.circular(7.0)),
+              child: Row(
                 children: [
-                  Text(
-                    'Product categories',
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
+                  Image(
+                    height: 48.0,
+                    width: 48.0,
+                    image: AssetImage(index % 2 == 0
+                        ? AppImages.product1
+                        : AppImages.product2),
                   ),
-                  Text(
-                    'See all',
-                    style: TextStyle(
-                        color: AppColors.primaryColor, fontSize: 14.0),
-                  ),
-                ],
-              ),
-              SizedBox(height: 20.0),
-              Container(
-                height: 120,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 4,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        padding: EdgeInsets.symmetric(
-                            vertical: 36.0, horizontal: 16.0),
-                        margin: EdgeInsets.symmetric(horizontal: 10.0),
-                        decoration: BoxDecoration(
-                          color: AppColors.lightOrange,
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        child: Column(
+                  SizedBox(width: 16.0),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
                           children: [
-                            SizedBox(height: 14.0),
+                            Expanded(
+                              child: Text(
+                                'Wind air freshner assorted x6...',
+                                style: TextStyle(
+                                    color: AppColors.darkText,
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.w500),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                              ),
+                            ),
+                            SvgPicture.asset(SvgIcons.addCart),
+                          ],
+                        ),
+                        SizedBox(height: 14.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
                             Text(
-                              'Drinks',
-                              style: TextStyle(fontSize: 16.0),
+                              'Toiletries',
+                              style: TextStyle(
+                                color: AppColors.black.withOpacity(0.5),
+                                fontSize: 12.0,
+                              ),
+                            ),
+                            Text(
+                              index % 2 == 0 ? 'Available' : 'Unavailable',
+                              style: TextStyle(
+                                color: index % 2 == 0
+                                    ? AppColors.green
+                                    : AppColors.red,
+                                fontSize: 12.0,
+                              ),
                             ),
                           ],
                         ),
-                      );
-                    }),
-              ),
-              SizedBox(height: 38.0),
-              Text(
-                'Recent order list',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
-              ),
-              SizedBox(height: 16.0),
-              Container(
-                height: 120,
-                child: ListView.builder(
-                    itemCount: 4,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        margin: EdgeInsets.symmetric(vertical: 10.0),
-                        child: Material(
-                          elevation: 1,
-                          borderRadius: BorderRadius.circular(5.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: AppColors.green.withOpacity(0.6),
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            child: Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 14.0, horizontal: 16.0),
-                              margin: EdgeInsets.only(left: 8.0),
-                              color: AppColors.white,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'P0160984146427',
-                                        style: TextStyle(
-                                            fontSize: 14.0,
-                                            color: AppColors.black
-                                                .withOpacity(0.6)),
-                                      ),
-                                      SizedBox(height: 14.0),
-                                      Text(
-                                        'Jan 3, 2021  10:11 AM',
-                                        style: TextStyle(
-                                            fontSize: 12.0,
-                                            color: AppColors.black
-                                                .withOpacity(0.4)),
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        '₦ 8,000',
-                                        style: TextStyle(
-                                            fontSize: 13.0,
-                                            color: AppColors.black
-                                                .withOpacity(0.4)),
-                                      ),
-                                      SizedBox(height: 14.0),
-                                      Text(
-                                        '2 days ago',
-                                        style: TextStyle(
-                                            fontSize: 12.0,
-                                            color: AppColors.primaryColor),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                        SizedBox(height: 4.0),
+                        Divider(
+                          thickness: 1,
+                          color: AppColors.dividerColor,
+                        ),
+                        SizedBox(height: 4.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              index % 2 == 0 ? 'Kilogram' : 'Each',
+                              style: TextStyle(
+                                color: AppColors.darkText,
+                                fontSize: 14.0,
                               ),
                             ),
-                          ),
+                            Text(
+                              '₦7,350.00',
+                              style: TextStyle(
+                                color: AppColors.darkText,
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
-                      );
-                    }),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
-      ),
+            );
+          }),
     );
   }
 }

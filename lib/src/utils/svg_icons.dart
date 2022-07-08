@@ -13,4 +13,5 @@ class SvgIcons {
   static const String delete = _path + 'delete.svg';
   static const String search = _path + 'search.svg';
   static const String search2 = _path + 'search-2.svg';
+  static const String chevronRight = _path + 'chevron-right.svg';
 }

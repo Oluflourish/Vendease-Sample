@@ -3,6 +3,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:vendease_test/src/blocs/provider.dart';
+import 'package:vendease_test/src/screens/cart.dart';
 import 'package:vendease_test/src/screens/tab.dart';
 import 'package:vendease_test/src/screens/splash.dart';
 import 'package:vendease_test/src/utils/colors.dart';
@@ -94,6 +95,9 @@ Route routes(RouteSettings settings) {
 
         case TabNav:
           return TabScreen();
+
+        case CartNav:
+          return CartScreen();
 
         default:
           return SplashScreen();

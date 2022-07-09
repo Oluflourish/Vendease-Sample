@@ -6,13 +6,13 @@ Vendease Sample App
 
 <div style="text-align: center"><table><tr>
   <td style="text-align: center">
-  <img src="./ss/ss1.jpg" width="200"/>
+  <img src="./ss/1.png" width="200"/>
 </td>
   <td style="text-align: center">
-  <img src="./ss/ss2.jpg" width="200"/>
+  <img src="./ss/2.png" width="200"/>
 </td>
 <td style="text-align: center">
-<img src="./ss/3.jpg" width="200"/>
+<img src="./ss/3.png" width="200"/>
 </td>
   <td style="text-align: center">
 <img src="./ss/vendease-sample.mp4" width="200"/>
@@ -31,4 +31,4 @@ Vendease Sample App
 ## 📸 Screenshots
 | Splash Screen| Sign In Screen| Sign Up Screen|
 |------|-------|-------|
-|<img src="ss/ss1.jpg" width="300">|<img src="ss/ss2.jpg" width="300">|<img src="ss/ss3.jpg" width="300">|
+|<img src="ss/1.png" width="300">|<img src="ss/2.png" width="300">|<img src="ss/3.png" width="300">|

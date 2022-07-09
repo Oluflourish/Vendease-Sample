@@ -20,16 +20,19 @@ Vendease Sample App
   
 </tr></table></div>
 
-## ✨ Features
-* Firebase Authentication.
-* Google Places (Autocomplete search features for places).
-* Provider.
-* MVVM Architecture.
-* SharedPreference (Persistence of location and user login state)
+
+## 📸 Screenshots
+|------|-------|-------|
+|<img src="ss/vendease-sample.gif" width="300">|<img src="ss/1.png" width="300">|<img src="ss/2.png" width="300">|
 
 <br>
 
-## 📸 Screenshots
-| Splash Screen| Sign In Screen| Sign Up Screen|
-|------|-------|-------|
-|<img src="ss/vendease-sample.gif.png" width="300">|<img src="ss/2.png" width="300">|<img src="ss/3.png" width="300">|
+## ✨ Features
+* State management: Bloc (with Provider)
+* Flutter Screen Util (to ccale font & widget sizes)
+* Fonts (Gilroy and Lato)
+* Image Cache
+* Categorisation of products by sub_category
+
+
+

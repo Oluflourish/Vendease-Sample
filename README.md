@@ -1,16 +1,34 @@
-# vendease_test
+# Vendease Sample
 
-A new Flutter project.
+Vendease Sample App
 
-## Getting Started
+>SCREEN SHOTS
 
-This project is a starting point for a Flutter application.
+<div style="text-align: center"><table><tr>
+  <td style="text-align: center">
+  <img src="./ss/ss1.jpg" width="200"/>
+</td>
+  <td style="text-align: center">
+  <img src="./ss/ss2.jpg" width="200"/>
+</td>
+<td style="text-align: center">
+<img src="./ss/3.jpg" width="200"/>
+</td>
+  <td style="text-align: center">
+<img src="./ss/vendease-sample.mp4" width="200"/>
+</td>
+</tr></table></div>
 
-A few resources to get you started if this is your first Flutter project:
+## ✨ Features
+* Firebase Authentication.
+* Google Places (Autocomplete search features for places).
+* Provider.
+* MVVM Architecture.
+* SharedPreference (Persistence of location and user login state)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+<br>
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📸 Screenshots
+| Splash Screen| Sign In Screen| Sign Up Screen|
+|------|-------|-------|
+|<img src="ss/ss1.jpg" width="300">|<img src="ss/ss2.jpg" width="300">|<img src="ss/ss3.jpg" width="300">|

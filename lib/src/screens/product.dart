@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:vendease_test/src/blocs/cart_bloc.dart';
 import 'package:vendease_test/src/blocs/product_bloc.dart';
 import 'package:vendease_test/src/blocs/provider.dart';
+import 'package:vendease_test/src/models/cart_model.dart';
 import 'package:vendease_test/src/models/product_model.dart';
 import 'package:vendease_test/src/utils/colors.dart';
 import 'package:vendease_test/src/utils/navigation.dart';
@@ -178,6 +180,8 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CartBloc cartBloc = BlocProvider.cart(context);
+
     return Container(
       padding: EdgeInsets.symmetric(vertical: 18.0, horizontal: 16.0),
       margin: EdgeInsets.symmetric(vertical: 6.0),
@@ -221,7 +225,11 @@ class ProductItem extends StatelessWidget {
                     ),
                     SizedBox(width: 8.0),
                     InkWell(
-                        onTap: () => Navigator.pushNamed(context, CartNav),
+                        onTap: () {
+                          cartBloc
+                              .addItemtoCart(CartModel(product: productModel));
+                          Navigator.pushNamed(context, CartNav);
+                        },
                         child: SvgPicture.asset(SvgIcons.addCart)),
                   ],
                 ),

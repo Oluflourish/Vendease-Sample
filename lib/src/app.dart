@@ -92,6 +92,15 @@ Route routes(RouteSettings settings) {
 
         case TabNav:
           BlocProvider.product(context).getProducts();
+          BlocProvider.cart(context).init();
+          return TabScreen();
+
+        case HomeTabNav:
+          BlocProvider.appNav(context).setTabIndex(0);
+          return TabScreen();
+
+        case ProductsTabNav:
+          BlocProvider.appNav(context).setTabIndex(2);
           return TabScreen();
 
         case CartNav:
